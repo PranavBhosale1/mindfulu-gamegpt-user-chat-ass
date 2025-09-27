@@ -5,7 +5,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import { RecordingProvider } from "./Games/RecordingContext";
-import Challenge from "./pages/Challenge";
 import Index from "./Games/Index";
 import Dynamic from "./pages/Dynamic";
 import InteractiveGamesLanding from "./pages/InteractiveGamesLanding";
@@ -41,7 +40,6 @@ const App = () => (
                 <Index />
               </ProtectedRoute>
             } /> */}
-            <Route path="/challenge" element={<Challenge />} />
             <Route path="/emotions" element={
               <ProtectedRoute>
                 <Emotions />

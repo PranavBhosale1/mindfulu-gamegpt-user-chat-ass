@@ -70,10 +70,10 @@ export default function ChallengePage({
   };
 
   return (
-    <div className="max-w-xl mx-auto py-8 px-4">
+    <div className="max-w-xl mx-auto py-8 px-4" style={{backgroundColor: 'var(--bg-cream)'}}>
       <div className="max-w-xl mx-auto mb-0">
-        <div className="flex items-center justify-between px-4 py-2 bg-card/50 backdrop-blur-sm rounded-lg border border-border/50 relative min-h-[64px]">
-          <div className="inline-flex items-center px-3 py-2 rounded-full border border-[#F5BF21] bg-[#FFF8E5] shadow-sm text-brown-800 font-semibold text-sm">
+        <div className="flex items-center justify-between px-4 py-2 bg-card/50 backdrop-blur-sm rounded-lg border relative min-h-[64px] card" style={{borderColor: 'rgba(139, 92, 246, 0.1)'}}>
+          <div className="inline-flex items-center px-3 py-2 rounded-full border shadow-sm font-semibold text-sm" style={{borderColor: 'var(--brand-yellow)', backgroundColor: 'var(--bg-cream)', color: 'var(--brand-yellow)'}}>
             <div className="relative w-5 h-5 mr-2 ">
               <img
                 src="/img/goldcoin.png"
@@ -97,10 +97,10 @@ export default function ChallengePage({
           </div>
 
           <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center leading-tight">
-            <h2 className="text-base font-bold text-foreground mt-4">
+            <h2 className="text-base font-bold font-poppins mt-4" style={{color: 'var(--text-dark)'}}>
               {currentChallengeData.title}
             </h2>
-            <p className="text-xs text-muted-foreground leading-none mt-0.5">
+            <p className="text-xs leading-none mt-0.5" style={{color: 'var(--text-medium)'}}>
               {currentChallengeData.type === "video"
                 ? "Watch it"
                 : currentChallengeData.type === "audio"
@@ -121,7 +121,7 @@ export default function ChallengePage({
         </div>
       </div>
 
-      <Card className="p-6 bg-card/50 backdrop-blur-sm border-border/50 animate-fade-in">
+      <Card className="p-6 bg-card/50 backdrop-blur-sm border animate-fade-in card" style={{borderColor: 'rgba(139, 92, 246, 0.1)'}}>
         <div className="space-y-4">
           {currentChallengeData.type === "video" && currentChallengeData.mediaUrl ? (
             <div className="w-full max-w-xl">
@@ -143,8 +143,8 @@ export default function ChallengePage({
               />
             </div>
           ) : (
-            <div className="bg-gradient-to-br from-primary/10 to-accent/10 p-8 rounded-lg border border-primary/20 max-w-2xl">
-              <p className="text-lg text-foreground leading-relaxed text-center">
+            <div className="p-8 rounded-lg border max-w-2xl" style={{backgroundColor: 'rgba(139, 92, 246, 0.05)', borderColor: 'rgba(139, 92, 246, 0.2)'}}>
+              <p className="text-lg leading-relaxed text-center" style={{color: 'var(--text-dark)'}}>
                 {currentChallengeData.content}
               </p>
             </div>
@@ -155,9 +155,10 @@ export default function ChallengePage({
               variant="outline"
               size="icon"
               onClick={handleNext}
-              className="h-12 w-12 rounded-full border-primary/30 bg-primary/10 hover:bg-primary/20"
+              className="h-12 w-12 rounded-full btn"
+              style={{borderColor: 'rgba(139, 92, 246, 0.3)', backgroundColor: 'rgba(139, 92, 246, 0.1)'}}
             >
-              <ArrowRight className="w-6 h-6 text-primary" />
+              <ArrowRight className="w-6 h-6" style={{color: 'var(--brand-purple)'}} />
             </Button>
           </div>
         </div>

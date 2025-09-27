@@ -3,7 +3,7 @@ import { InteractiveGamesHeader } from "@/components/InteractiveGamesHeader";
 
 interface InteractiveGamesLayoutProps {
   children: ReactNode;
-  currentPage?: 'challenge' | 'dynamic' | 'landing';
+  currentPage?: 'dynamic' | 'landing';
 }
 
 export function InteractiveGamesLayout({ children, currentPage }: InteractiveGamesLayoutProps) {

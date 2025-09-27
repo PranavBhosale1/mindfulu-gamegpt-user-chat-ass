@@ -1,21 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { InteractiveGamesLayout } from "@/components/InteractiveGamesLayout";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { 
   Gamepad2, 
-  Target, 
   Sparkles, 
   Heart, 
   Brain, 
   Users, 
   Star,
   ArrowRight,
-  Play,
   Wand2,
-  Trophy,
-  Zap
+  Trophy
 } from "lucide-react";
 
 export default function InteractiveGamesLanding() {
@@ -23,191 +18,100 @@ export default function InteractiveGamesLanding() {
 
   const gameFeatures = [
     {
-      icon: Target,
-      title: "Challenge Games",
-      description: "Interactive behavioral challenges designed to boost your mood and reduce stress",
-      color: "text-emerald-600",
-      bgColor: "bg-emerald-50",
-      borderColor: "border-emerald-200",
-      action: () => navigate("/challenge")
-    },
-    {
       icon: Gamepad2,
       title: "AI Game Creator",
       description: "Create personalized wellness games tailored to your specific needs and preferences",
-      color: "text-purple-600",
-      bgColor: "bg-purple-50",
-      borderColor: "border-purple-200",
+      emoji: "🎮",
       action: () => navigate("/dynamic")
     }
   ];
 
-  const benefits = [
-    {
-      icon: Brain,
-      title: "Cognitive Enhancement",
-      description: "Improve focus, memory, and problem-solving skills"
-    },
-    {
-      icon: Heart,
-      title: "Emotional Wellness",
-      description: "Develop healthy coping strategies and emotional regulation"
-    },
-    {
-      icon: Users,
-      title: "Social Connection",
-      description: "Build confidence and improve interpersonal skills"
-    },
-    {
-      icon: Trophy,
-      title: "Personal Growth",
-      description: "Track progress and celebrate achievements"
-    }
-  ];
-
-  const stats = [
-    { label: "Games Available", value: "50+", icon: Gamepad2 },
-    { label: "Happy Users", value: "10K+", icon: Users },
-    { label: "Success Rate", value: "95%", icon: Star },
-    { label: "Avg. Rating", value: "4.8/5", icon: Heart }
-  ];
-
   return (
     <InteractiveGamesLayout currentPage="landing">
-      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50">
-      {/* Hero Section */}
-      <div className="container mx-auto px-4 py-12">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl mb-6 shadow-lg">
-            <Play className="w-10 h-10 text-white" />
-          </div>
-          
-          <h1 className="text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-            Interactive Activities
-          </h1>
-          
-          <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Engage in fun and helpful exercises designed to boost your mood and reduce stress. 
-            Experience personalized wellness games that adapt to your needs.
-          </p>
-
-          {/* Stats */}
-          <div className="flex flex-wrap justify-center gap-6 mb-12">
-            {stats.map((stat, index) => (
-              <div key={index} className="flex items-center gap-3 px-6 py-3 bg-white rounded-full shadow-md border border-gray-100">
-                <stat.icon className="w-5 h-5 text-purple-600" />
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
-                  <div className="text-sm text-gray-600">{stat.label}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Main Game Features */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-16">
-          {gameFeatures.map((feature, index) => (
-            <Card 
-              key={index} 
-              className={`${feature.bgColor} ${feature.borderColor} border-2 hover:shadow-xl transition-all duration-300 cursor-pointer group`}
-              onClick={feature.action}
-            >
-              <CardHeader className="pb-4">
-                <div className="flex items-center gap-4">
-                  <div className={`w-16 h-16 ${feature.bgColor} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform`}>
-                    <feature.icon className={`w-8 h-8 ${feature.color}`} />
-                  </div>
-                  <div>
-                    <CardTitle className={`text-2xl font-bold ${feature.color}`}>
-                      {feature.title}
-                    </CardTitle>
-                    <Badge variant="secondary" className="mt-2">
-                      <Zap className="w-3 h-3 mr-1" />
-                      Interactive
-                    </Badge>
-                  </div>
-                </div>
-              </CardHeader>
-              
-              <CardContent>
-                <p className="text-gray-600 mb-6 text-lg leading-relaxed">
-                  {feature.description}
-                </p>
-                
-                <Button 
-                  className={`w-full h-12 text-lg font-semibold ${feature.color.includes('emerald') ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-purple-600 hover:bg-purple-700'} text-white group-hover:scale-105 transition-transform`}
-                  onClick={feature.action}
-                >
-                  <span>Get Started</span>
-                  <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Benefits Section */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
-            Why Choose Our Interactive Activities?
-          </h2>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {benefits.map((benefit, index) => (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow border border-gray-100">
-                <CardContent className="pt-6">
-                  <div className="w-12 h-12 bg-gradient-to-r from-purple-100 to-blue-100 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <benefit.icon className="w-6 h-6 text-purple-600" />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2 text-gray-900">{benefit.title}</h3>
-                  <p className="text-sm text-gray-600 leading-relaxed">{benefit.description}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* Call to Action */}
-        <div className="text-center">
-          <Card className="bg-gradient-to-r from-purple-600 to-blue-600 text-white border-0 shadow-2xl">
-            <CardContent className="py-12">
-              <div className="flex items-center justify-center w-16 h-16 bg-white/20 rounded-2xl mb-6 mx-auto">
-                <Sparkles className="w-8 h-8 text-white" />
-              </div>
-              
-              <h2 className="text-3xl font-bold mb-4">
-                Ready to Start Your Wellness Journey?
-              </h2>
-              
-              <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
-                Join thousands of users who have transformed their mental wellness through our interactive activities.
+      <div className="relative min-h-screen w-full overflow-x-hidden bg-[var(--bg-cream)]">
+        <div className="relative mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
+          <main className="relative mt-8">
+            <section className="relative text-center pt-8 pb-16">
+              <h1 className="font-extrabold text-4xl sm:text-5xl lg:text-7xl leading-tight tracking-tighter text-[var(--text-dark)] font-poppins">
+                Interactive <span className="text-[var(--brand-purple)] bg-gradient-to-r from-[var(--brand-purple)] to-purple-700 bg-clip-text text-transparent">Activities</span> for your<br className="hidden sm:block" />
+                <span className="text-[var(--brand-pink)] bg-gradient-to-r from-[var(--brand-pink)] to-pink-600 bg-clip-text text-transparent">Well-being</span>
+              </h1>
+              <p className="mt-8 max-w-3xl mx-auto text-[var(--text-medium)] leading-relaxed text-lg">
+                Engage in fun and helpful exercises designed to boost your mood and reduce stress. 
+                Experience personalized wellness games that adapt to your needs and help you grow.
               </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  size="lg" 
-                  className="bg-white text-purple-600 hover:bg-gray-100 font-semibold px-8 py-3"
-                  onClick={() => navigate("/challenge")}
+              <div className="mt-10 flex justify-center">
+                <button 
+                  onClick={() => navigate("/dynamic")} 
+                  className="px-8 py-3.5 rounded-full text-base font-bold bg-gradient-to-r from-[var(--brand-purple)] to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:from-purple-700 hover:to-purple-800"
                 >
-                  <Target className="w-5 h-5 mr-2" />
-                  Try Challenges
-                </Button>
-                
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="border-white text-white hover:bg-white/10 font-semibold px-8 py-3"
-                  onClick={() => navigate("/dynamic")}
-                >
-                  <Wand2 className="w-5 h-5 mr-2" />
-                  Create Games
-                </Button>
+                  <span className="flex items-center justify-center gap-2">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                    </svg>
+                    Create Your Game
+                  </span>
+                </button>
               </div>
-            </CardContent>
-          </Card>
+            </section>
+
+            <section className="py-16">
+              <div className="text-center">
+                <h2 className="font-extrabold text-3xl sm:text-4xl text-[var(--text-dark)]">Your Personal Toolkit for Well-being</h2>
+                <p className="font-caveat text-4xl sm:text-5xl text-[var(--brand-yellow)] -mt-2">Always Here for You</p>
+              </div>
+
+              <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                {[
+                  { emoji: '🎮', title: 'AI Game Creator', text: 'Create personalized wellness games tailored to your specific needs and preferences.', color: 'from-purple-500 to-purple-600' },
+                  { emoji: '🧠', title: 'Cognitive Enhancement', text: 'Improve focus, memory, and problem-solving skills through interactive challenges.', color: 'from-blue-500 to-blue-600' },
+                  { emoji: '❤️', title: 'Emotional Wellness', text: 'Develop healthy coping strategies and emotional regulation techniques.', color: 'from-pink-500 to-pink-600' },
+                  { emoji: '🏆', title: 'Personal Growth', text: 'Track progress and celebrate achievements in your wellness journey.', color: 'from-green-500 to-green-600' },
+                ].map((feature) => (
+                  <div 
+                    key={feature.title} 
+                    className="bg-white rounded-3xl p-6 text-center shadow-sm border border-gray-200/50 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer group" 
+                    onClick={() => feature.title === 'AI Game Creator' ? navigate("/dynamic") : null}
+                  >
+                    <div className={`mx-auto bg-gradient-to-br ${feature.color} size-16 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                      <span className="text-4xl">{feature.emoji}</span>
+                    </div>
+                    <h3 className="font-bold text-xl text-[var(--text-dark)] mt-5 font-poppins">{feature.title}</h3>
+                    <p className="mt-2 text-sm text-[var(--text-medium)] leading-relaxed">{feature.text}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section className="bg-gradient-to-r from-[var(--brand-purple)] via-purple-600 to-[var(--brand-pink)] my-16 rounded-3xl text-center text-white py-16 px-8 shadow-2xl">
+              <div className="max-w-4xl mx-auto">
+                <h2 className="font-extrabold text-3xl sm:text-4xl lg:text-5xl font-poppins mb-6">Ready to prioritize your well-being?</h2>
+                <p className="mt-4 max-w-2xl mx-auto text-white/90 leading-relaxed text-lg">
+                  Join thousands of users who have transformed their mental wellness through our interactive activities.
+                </p>
+                <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+                  <button 
+                    onClick={() => navigate("/dynamic")} 
+                    className="px-8 py-4 rounded-full text-base font-bold bg-white text-[var(--brand-purple)] shadow-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 hover:shadow-xl"
+                  >
+                    <span className="flex items-center justify-center gap-2">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
+                      </svg>
+                      Create Your Game
+                    </span>
+                  </button>
+                  <button 
+                    onClick={() => navigate("/")} 
+                    className="px-8 py-4 rounded-full text-base font-bold bg-white/10 text-white border border-white/30 hover:bg-white/20 transition-all duration-300 transform hover:scale-105"
+                  >
+                    Learn More
+                  </button>
+                </div>
+              </div>
+            </section>
+          </main>
         </div>
-      </div>
       </div>
     </InteractiveGamesLayout>
   );
