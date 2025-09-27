@@ -8,6 +8,7 @@ import { RecordingProvider } from "./Games/RecordingContext";
 import Challenge from "./pages/Challenge";
 import Index from "./Games/Index";
 import Dynamic from "./pages/Dynamic";
+import InteractiveGamesLanding from "./pages/InteractiveGamesLanding";
 
 // Import your existing main app pages
 import Emotions from "./pages/Emotions";
@@ -30,8 +31,8 @@ const App = () => (
       <BrowserRouter>
         <RecordingProvider>
           <Routes>
-            {/* Chat bot home: accessible to guest + user */}
-            <Route path="/" element={<Challenge />} />
+            {/* Interactive Games Landing Page */}
+            <Route path="/" element={<InteractiveGamesLanding />} />
             {/* Login page: visible only to guest */}
            
             {/* All main features protected for users only */}
@@ -40,11 +41,7 @@ const App = () => (
                 <Index />
               </ProtectedRoute>
             } /> */}
-            <Route path="/challenge" element={
-              <ProtectedRoute>
-                <Challenge />
-              </ProtectedRoute>
-            } />
+            <Route path="/challenge" element={<Challenge />} />
             <Route path="/emotions" element={
               <ProtectedRoute>
                 <Emotions />
@@ -65,11 +62,7 @@ const App = () => (
                 <Companion />
               </ProtectedRoute>
             } />
-            <Route path="/dynamic" element={
-              <ProtectedRoute>
-                <Dynamic />
-              </ProtectedRoute>
-            } />
+            <Route path="/dynamic" element={<Dynamic />} />
             {/* 404 Handler */}
             <Route path="*" element={<NotFound />} />
           </Routes>

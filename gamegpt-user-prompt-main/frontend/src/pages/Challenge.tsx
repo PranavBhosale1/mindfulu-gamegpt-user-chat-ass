@@ -5,7 +5,7 @@ import LandingPage from "@/Games/LandingPage";
 import ChallengePage from "@/Games/ChallengePage";
 import EmotionForm from "@/Games/EmotionsForm";
 import ReactionForm from "@/Games/ReactionForm";
-import { Layout } from "@/components/Layout";
+import { InteractiveGamesLayout } from "@/components/InteractiveGamesLayout";
 import challengeData from "@/data/challenges.json";
 
 export default function App() {
@@ -53,7 +53,7 @@ export default function App() {
   }, []);
 
   return (
-    <Layout>
+    <InteractiveGamesLayout currentPage="challenge">
       <div className="max-w-xl mx-auto pt-6"> {/*  Reduced padding */}
         {currentScreen === "landing" && (
           <Suspense fallback={<div>Loading Landing...</div>}>
@@ -110,6 +110,6 @@ export default function App() {
           </Suspense>
         )}
       </div>
-    </Layout>
+    </InteractiveGamesLayout>
   );
 }

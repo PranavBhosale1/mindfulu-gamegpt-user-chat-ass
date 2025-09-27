@@ -2,9 +2,20 @@
 
 A comprehensive mental wellness platform that combines interactive games, AI-powered companions, and therapeutic assessments to support mental health and emotional well-being.
 
+## 🌟 Overview
+
+This repository contains a complete mental wellness ecosystem consisting of multiple interconnected applications designed to provide comprehensive mental health support through:
+
+- **AI-Powered Gaming**: Interactive therapeutic games generated dynamically
+- **Clinical Assessments**: Standardized mental health evaluation tools
+- **Chatbot Companions**: AI-driven mental health support conversations
+- **Analytics & Reporting**: Progress tracking and insights generation
+
+The platform is built with modern technologies and follows best practices for scalability, security, and user experience.
+
 ## 🏗️ Project Structure
 
-This repository contains two main applications:
+This repository contains four main applications:
 
 ### 1. **GameGPT User Prompt System** (`gamegpt-user-prompt-main/`)
 - **Backend**: FastAPI-based Python server with AI integration
@@ -14,6 +25,17 @@ This repository contains two main applications:
 ### 2. **MindfulU Frontend** (`mindfulu-frontend-master/`)
 - **Frontend**: React + TypeScript + Vite application
 - **Purpose**: Comprehensive mental wellness platform with assessments, games, and dashboards
+
+### 3. **Assessment Engine** (`AssessmentEngine/`)
+- **Backend**: Python-based assessment processing system
+- **Frontend**: React + TypeScript assessment interface
+- **Purpose**: Mental health assessments including PHQ-9, UCLA Loneliness Scale, and Internet Addiction
+- **Features**: Dynamic questionnaire rendering, progress tracking, and report generation
+
+### 4. **MindfulU Chatbot Demo** (`mindfulu-chatbot-demo/`)
+- **Frontend**: React + TypeScript + Vite demo application
+- **Purpose**: Chatbot interface demonstration for mental health conversations
+- **Features**: Clean UI for showcasing chatbot capabilities
 
 ## 🚀 Quick Start
 
@@ -113,6 +135,45 @@ npm install
 # Edit .env with your API URL
 ```
 
+### 4. Assessment Engine Setup
+
+#### Backend Setup
+```bash
+# Navigate to AssessmentEngine backend directory
+cd AssessmentEngine/backend
+
+# Create virtual environment
+python3 -m venv venv
+
+# Activate virtual environment
+# On macOS/Linux:
+source venv/bin/activate
+# On Windows:
+# venv\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+#### Frontend Setup
+```bash
+# Navigate to AssessmentEngine frontend directory
+cd AssessmentEngine/frontend
+
+# Install dependencies
+npm install
+```
+
+### 5. Chatbot Demo Setup
+
+```bash
+# Navigate to chatbot demo directory
+cd mindfulu-chatbot-demo
+
+# Install dependencies
+npm install
+```
+
 ## 🏃‍♂️ Running the Applications
 
 ### Backend Server (GameGPT)
@@ -150,6 +211,30 @@ npm run dev
 ```
 
 Available at: `http://localhost:8080`
+
+#### Assessment Engine
+```bash
+# Backend
+cd AssessmentEngine/backend
+source venv/bin/activate
+python main.py
+
+# Frontend (in a new terminal)
+cd AssessmentEngine/frontend
+npm run dev
+```
+
+Available at: `http://localhost:3000` (frontend)
+
+#### Chatbot Demo
+```bash
+cd mindfulu-chatbot-demo
+
+# Start development server
+npm run dev
+```
+
+Available at: `http://localhost:5173`
 
 ## 🐳 Docker Setup (Optional)
 
@@ -248,6 +333,19 @@ Both frontend applications use Vite with proxy configuration:
 - **Game Library**: Curated collection of therapeutic games
 - **Student/Admin Views**: Role-based access control
 
+### Assessment Engine
+- **Standardized Assessments**: PHQ-9 (depression), UCLA Loneliness Scale, Internet Addiction
+- **Dynamic Questionnaire System**: Flexible question rendering and response collection
+- **Progress Tracking**: Real-time progress indicators and completion status
+- **Report Generation**: Automated assessment reports and recommendations
+- **Demographics Collection**: Comprehensive user demographic data gathering
+
+### Chatbot Demo
+- **Clean Interface**: Modern, responsive chat interface
+- **Mental Health Focus**: Specialized for mental health conversations
+- **Demo-Ready**: Perfect for showcasing chatbot capabilities
+- **Responsive Design**: Works seamlessly across devices
+
 ## 🔒 Security & Privacy
 
 - **Environment Variables**: Sensitive data stored in `.env` files (not committed)
@@ -265,10 +363,17 @@ Once the backend is running, visit:
 
 ### Key Endpoints
 
+#### GameGPT Backend
 - `POST /api/generate-game` - Generate new games
 - `POST /api/chat` - AI chat interface
 - `GET /api/health` - Health check
 - `GET /api/games` - List available games
+
+#### Assessment Engine Backend
+- `GET /api/assessments` - List available assessments
+- `GET /api/assessments/{assessment_id}` - Get specific assessment template
+- `POST /api/assessments/{assessment_id}/submit` - Submit assessment responses
+- `GET /api/assessments/{assessment_id}/report/{session_id}` - Get assessment report
 
 ## 🐛 Troubleshooting
 
@@ -340,15 +445,28 @@ For support and questions:
 To update dependencies:
 
 ```bash
-# Backend
+# GameGPT Backend
 cd gamegpt-user-prompt-main/backend
 pip install --upgrade -r requirements.txt
 
-# Frontend (both applications)
+# GameGPT Frontend
 cd gamegpt-user-prompt-main/frontend
 npm update
 
+# MindfulU Frontend
 cd mindfulu-frontend-master
+npm update
+
+# Assessment Engine Backend
+cd AssessmentEngine/backend
+pip install --upgrade -r requirements.txt
+
+# Assessment Engine Frontend
+cd AssessmentEngine/frontend
+npm update
+
+# Chatbot Demo
+cd mindfulu-chatbot-demo
 npm update
 ```
 

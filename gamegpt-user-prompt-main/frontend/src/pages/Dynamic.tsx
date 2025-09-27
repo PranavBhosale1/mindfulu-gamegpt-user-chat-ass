@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { Layout } from '@/components/Layout';
+import { InteractiveGamesLayout } from '@/components/InteractiveGamesLayout';
 import { GameSchema } from '@/types/game-schema';
 import { useGameGeneration } from '@/hooks/useGameGeneration';
 import { GameRequest } from '@/services/api';
@@ -143,7 +143,7 @@ const gameTypes = [
 
   if (generatedGame) {
     return (
-      <Layout>
+      <InteractiveGamesLayout currentPage="dynamic">
         <div className="container mx-auto px-4 py-6 max-w-6xl">
           {/* Header with actions */}
           <div className="flex flex-wrap items-center justify-between mb-6 gap-4">
@@ -217,12 +217,12 @@ const gameTypes = [
             />
           </Suspense>
         </div>
-      </Layout>
+      </InteractiveGamesLayout>
     );
   }
 
   return (
-    <Layout>
+    <InteractiveGamesLayout currentPage="dynamic">
       <div className="container mx-auto px-4 py-4 max-w-5xl">
         {/* Hero Section */}
         <div className="text-center mb-8">
@@ -441,6 +441,6 @@ const gameTypes = [
           </div>
         </div>
       </div>
-    </Layout>
+    </InteractiveGamesLayout>
   );
 }

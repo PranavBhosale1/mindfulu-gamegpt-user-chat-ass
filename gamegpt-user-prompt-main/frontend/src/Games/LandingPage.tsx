@@ -64,46 +64,49 @@ const LandingPage = ({ onStart }: LandingPageProps) => {
   };
 
   return (
-    <div className="min-h-[80vh] p-4 relative">
+    <div className="min-h-[80vh] p-4 relative" style={{backgroundColor: 'var(--bg-cream)'}}>
       <div className="relative z-10 max-w-[605px] mx-auto w-full">
-        <Card className="p-4 bg-card/60 backdrop-blur-sm border-border/30 animate-fade-in shadow-xl space-y-6">
+        <Card className="p-6 bg-white backdrop-blur-sm border-2 border-purple-100 rounded-2xl shadow-xl space-y-6 animate-fade-in-up">
           {/* Header */}
-          <div className="text-center space-y-3">
-            <div className="w-16 h-16 mx-auto bg-gradient-to-br from-primary to-primary-glow rounded-full flex items-center justify-center animate-pulse-gold">
-              <Play className="w-6 h-6 text-primary-foreground" />
+          <div className="text-center space-y-4">
+            <div className="w-20 h-20 mx-auto gradient-purple rounded-2xl flex items-center justify-center animate-float">
+              <Play className="w-8 h-8 text-white" />
             </div>
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-primary to-primary-glow bg-clip-text text-transparent">
+            <h1 className="text-3xl font-bold font-poppins" style={{color: 'var(--brand-purple)'}}>
               Challenge Experience
             </h1>
-            <p className="text-muted-foreground text-base">
-              Welcome to Mood Magic! Let's begin your interactive challenge journey.
+            <p className="text-lg font-caveat" style={{color: 'var(--brand-pink)', fontSize: '1.5rem'}}>
+              Your Interactive Journey
+            </p>
+            <p className="text-base" style={{color: 'var(--text-medium)'}}>
+              Welcome to MindfulU! Let's begin your interactive challenge journey with personalized wellness games.
             </p>
           </div>
 
           {/* Permission States */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 ${
-              permissions.camera ? 'bg-success/10 border border-success/20' : 'bg-muted/30 border border-border'
+            <div className={`flex items-center space-x-3 p-4 rounded-xl transition-all duration-300 ${
+              permissions.camera ? 'bg-green-50 border-2 border-green-200' : 'bg-gray-50 border-2 border-gray-200'
             }`}>
               {permissions.camera ? (
-                <CheckCircle className="w-5 h-5 text-success" />
+                <CheckCircle className="w-6 h-6" style={{color: 'var(--brand-teal)'}} />
               ) : (
-                <Camera className="w-5 h-5 text-muted-foreground" />
+                <Camera className="w-6 h-6" style={{color: 'var(--text-medium)'}} />
               )}
-              <span className={permissions.camera ? 'text-success' : 'text-foreground'}>
+              <span className={`font-medium ${permissions.camera ? 'text-green-700' : ''}`} style={!permissions.camera ? {color: 'var(--text-dark)'} : {}}>
                 Camera Access
               </span>
             </div>
 
-            <div className={`flex items-center space-x-3 p-3 rounded-lg transition-all duration-300 ${
-              permissions.audio ? 'bg-success/10 border border-success/20' : 'bg-muted/30 border border-border'
+            <div className={`flex items-center space-x-3 p-4 rounded-xl transition-all duration-300 ${
+              permissions.audio ? 'bg-green-50 border-2 border-green-200' : 'bg-gray-50 border-2 border-gray-200'
             }`}>
               {permissions.audio ? (
-                <CheckCircle className="w-5 h-5 text-success" />
+                <CheckCircle className="w-6 h-6" style={{color: 'var(--brand-teal)'}} />
               ) : (
-                <Mic className="w-5 h-5 text-muted-foreground" />
+                <Mic className="w-6 h-6" style={{color: 'var(--text-medium)'}} />
               )}
-              <span className={permissions.audio ? 'text-success' : 'text-foreground'}>
+              <span className={`font-medium ${permissions.audio ? 'text-green-700' : ''}`} style={!permissions.audio ? {color: 'var(--text-dark)'} : {}}>
                 Microphone Access
               </span>
             </div>
@@ -111,16 +114,16 @@ const LandingPage = ({ onStart }: LandingPageProps) => {
 
           {/* Consent checkbox */}
           {(permissions?.camera || permissions?.audio) && (
-            <div className="flex items-start space-x-2 text-sm text-muted-foreground">
+            <div className="flex items-start space-x-3 p-4 bg-purple-50 rounded-xl border border-purple-200">
               <input
                 id="consent"
                 type="checkbox"
                 checked={consentGiven}
                 onChange={() => setConsentGiven(!consentGiven)}
-                className="mt-1"
+                className="mt-1 w-5 h-5 accent-purple-600"
               />
-              <label htmlFor="consent">
-                For better precision in assessment, your video and audio will be recorded during the challenge.
+              <label htmlFor="consent" className="text-sm font-medium" style={{color: 'var(--text-dark)'}}>
+                <span className="font-bold" style={{color: 'var(--brand-purple)'}}>Privacy First:</span> For better precision in assessment, your video and audio will be recorded during the challenge. Your data is completely private and secure.
               </label>
             </div>
           )}
@@ -131,22 +134,29 @@ const LandingPage = ({ onStart }: LandingPageProps) => {
               <Button 
                 onClick={requestPermissions} 
                 disabled={isLoading}
-                className="w-full h-12 text-base font-medium bg-gradient-to-r from-primary to-primary-glow hover:from-primary/90 hover:to-primary-glow/90 transition-all duration-300"
+                className="w-full h-14 text-lg font-bold gradient-purple hover:opacity-90 transition-all duration-300 transform hover:scale-105 rounded-xl shadow-lg"
               >
-                {isLoading ? "Requesting Permissions..." : "Let's Begin"}
+                {isLoading ? (
+                  <div className="flex items-center gap-2">
+                    <div className="loading-spinner"></div>
+                    Requesting Permissions...
+                  </div>
+                ) : (
+                  "Let's Begin Your Journey"
+                )}
               </Button>
             ) : (
               <Button 
                 onClick={handleStart}
-                className="w-full h-12 text-base font-medium bg-gradient-to-r from-success to-success/80 hover:from-success/90 hover:to-success/70 transition-all duration-300 animate-bounce-subtle"
+                className="w-full h-14 text-lg font-bold gradient-teal hover:opacity-90 transition-all duration-300 transform hover:scale-105 rounded-xl shadow-lg animate-pulse-gentle"
               >
-                Start Challenge
+                🚀 Start Challenge Experience
               </Button>
             )}
           </div>
 
-          <div className="text-center text-sm text-muted-foreground">
-            You'll complete challenges, share reactions, and track emotions in this immersive experience.
+          <div className="text-center text-sm font-medium" style={{color: 'var(--text-medium)'}}>
+            You'll complete challenges, share reactions, and track emotions in this immersive wellness experience.
           </div>
         </Card>
       </div>
