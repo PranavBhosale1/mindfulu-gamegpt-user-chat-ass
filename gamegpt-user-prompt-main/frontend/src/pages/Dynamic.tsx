@@ -1,4 +1,4 @@
-import React, { useState, Suspense, lazy } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -55,7 +55,17 @@ export default function Dynamic() {
     reset
   } = useGameGeneration();
 
-  const gameTypes = [
+  // Log when a new game is generated
+  useEffect(() => {
+    if (generatedGame) {
+      console.log('🎉 New game received in Dynamic component!');
+      console.log('🎉 Game ID:', generatedGame.id);
+      console.log('🎉 Game Title:', generatedGame.title);
+      console.log('🎉 Full Game Object:', generatedGame);
+    }
+  }, [generatedGame]);
+
+const gameTypes = [
     { value: 'quiz', label: 'Quiz', description: 'Multiple choice and knowledge testing' },
     { value: 'drag-drop', label: 'Drag & Drop', description: 'Interactive sorting and categorization' },
     { value: 'memory-match', label: 'Memory Match', description: 'Memory and matching challenges' },
@@ -86,6 +96,7 @@ export default function Dynamic() {
       return;
     }
     
+    console.log('🚀 Starting game generation with request:', gameRequest);
     await generateGame(gameRequest);
   };
 

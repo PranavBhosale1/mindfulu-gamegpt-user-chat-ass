@@ -72,6 +72,11 @@ class ApiService {
       }
 
       const gameSchema: GameSchema = await response.json();
+      
+      // Log the complete game JSON to console
+      console.log('🎮 Generated Game JSON:', JSON.stringify(gameSchema, null, 2));
+      console.log('🎮 Game Schema Object:', gameSchema);
+      
       return gameSchema;
     } catch (error) {
       console.error('API call failed:', error);

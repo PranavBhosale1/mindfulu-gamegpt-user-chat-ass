@@ -40,6 +40,14 @@ export function useGameGeneration(): UseGameGenerationReturn {
       setGeneratedGame(game);
       setGenerationStep('');
       
+      // Log the generated game to console
+      console.log('🎯 Game Generation Complete!');
+      console.log('🎯 Generated Game:', game);
+      console.log('🎯 Game Type:', game.type);
+      console.log('🎯 Game Title:', game.title);
+      console.log('🎯 Game Description:', game.description);
+      console.log('🎯 Game Content:', game.content);
+      
       toast({
         title: "Game Generated Successfully!",
         description: `Created "${game.title}" - ${game.type} game`,

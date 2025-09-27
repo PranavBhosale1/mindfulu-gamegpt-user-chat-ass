@@ -12,6 +12,7 @@ import logging
 
 from fastapi import FastAPI, HTTPException, Request, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import Response
 from pydantic import BaseModel, Field
 import httpx
 from dotenv import load_dotenv
@@ -49,14 +50,15 @@ app = FastAPI(
 # Get application settings
 settings = get_settings()
 
-# Configure CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=settings.ALLOWED_ORIGINS,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# Configure CORS - Custom middleware approach
+@app.middleware("http")
+async def add_cors_headers(request: Request, call_next):
+    response = await call_next(request)
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, PUT, DELETE, OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "*"
+    response.headers["Access-Control-Max-Age"] = "600"
+    return response
 
 # Dependency injection for services
 def get_services() -> ServiceContainer:
@@ -110,6 +112,19 @@ async def health_check(services: ServiceContainer = Depends(get_services)):
             "error": str(e)
         }
 
+
+@app.options("/generate")
+async def options_generate():
+    """Handle OPTIONS request for CORS preflight"""
+    return Response(
+        status_code=200,
+        headers={
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "*",
+            "Access-Control-Max-Age": "600",
+        }
+    )
 
 @app.post("/generate", response_model=GameSchema)
 async def generate_game(
